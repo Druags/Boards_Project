@@ -1,12 +1,22 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 
 from .forms import NewTopicForm
 from .models import Board, Topic, Post
+from .serializers import BoardSerializer
 
 
 # Create your views here.
+class BoardViewAPI(APIView):
+    def get(self, request):
+        queryset = Board.objects.all()
+        serialized_board = BoardSerializer(instance=queryset, many=True)
+
+        return Response(serialized_board.data)
 
 
 def home_view(request):
