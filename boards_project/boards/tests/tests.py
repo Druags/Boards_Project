@@ -3,9 +3,9 @@ from django.test import TestCase
 from django.urls import reverse, resolve
 
 # Create your tests here.
-from .forms import NewTopicForm
-from .views import home_view, board_topics_view, new_topic
-from .models import Board, Topic, Post
+from ..views import new_topic, board_topics_view, home_view
+from ..models import Board, Topic, Post
+from ..forms import NewTopicForm
 
 
 class BoardTopicTests(TestCase):
@@ -131,4 +131,3 @@ class NewTopicTests(TestCase):
         response = self.client.get(url)
         form = response.context.get('form')
         self.assertIsInstance(form, NewTopicForm)
-

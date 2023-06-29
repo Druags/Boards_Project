@@ -1,6 +1,7 @@
+from django.contrib.auth.models import User
 from django.urls import resolve, reverse
 from django.test import TestCase
-from rest_framework.authtoken.admin import User
+
 
 from ..forms import SignUpForm
 from ..views import signup
