@@ -30,7 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('boards/<str:pk>', views.board_topics, name='board_topics'),
     path('boards/<str:pk>/new', views.new_topic, name='new_topic'),
-    path('boards/<str:pk>/topics/<str:topic_pk>/', views.topic_posts, name='topic_posts'),
+    path('boards/<str:pk>/topics/<str:topic_pk>/', views.PostListView.as_view(), name='topic_posts'),
     path('boards/<str:pk>/topics/<str:topic_pk>/reply/', views.reply_topic, name='reply_topic'),
     path('reset/',
          auth_views.PasswordResetView.as_view(
@@ -56,4 +56,6 @@ urlpatterns = [
          name='password_change_done'),
     path('boards/<str:pk>/topics/<str:topic_pk>/posts/<str:post_pk>/edit/',
          views.PostUpdateView.as_view(), name='edit_post'),
+    path('settings/account/', accounts_views.UserUpdateView.as_view(), name='my_account'),
+
 ]
